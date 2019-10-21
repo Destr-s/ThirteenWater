@@ -75,7 +75,8 @@ public class Main {
             if(ch.length()<10)continue;
             String[] s=ch.split(" ");
             String[] st=sort(s);
-            bufferedWriter.write(ch+"\n");
+            result.getResult(st,map);
+            /*bufferedWriter.write(ch+"\n");
             if(judge.isSpecial(st,bufferedWriter,map))
             {
                 bufferedWriter.write("是特殊牌型\n");
@@ -83,9 +84,9 @@ public class Main {
             else
             {
                 bufferedWriter.write("不是特殊牌型\n");
-            }
+            }*/
         }
-        bufferedWriter.flush();
-        bufferedWriter.close();
+        //bufferedWriter.flush();
+        //bufferedWriter.close();
     }
 }
