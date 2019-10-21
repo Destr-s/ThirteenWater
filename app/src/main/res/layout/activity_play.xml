@@ -47,37 +47,36 @@
             android:id="@+id/head_play2"
             android:layout_width="74dp"
             android:layout_height="65dp"
-            android:layout_marginStart="200dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toStartOf="@+id/textView5"
             app:layout_constraintTop_toBottomOf="@+id/back_3"
             app:srcCompat="@drawable/ic_head_start" />
 
-        <View
+        <ImageView
             android:id="@+id/front_2"
-            android:layout_width="60dp"
-            android:layout_height="80dp"
+            android:layout_width="48dp"
+            android:layout_height="66dp"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:background="@drawable/b1"
+            android:background="@drawable/ba"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <View
+        <ImageView
             android:id="@+id/front_1"
-            android:layout_width="60dp"
-            android:layout_height="80dp"
+            android:layout_width="48dp"
+            android:layout_height="66dp"
             android:layout_marginEnd="8dp"
-            android:background="@drawable/c1"
+            android:background="@drawable/ca"
             app:layout_constraintBottom_toBottomOf="@+id/front_2"
             app:layout_constraintEnd_toStartOf="@+id/front_2"
             app:layout_constraintTop_toTopOf="@+id/front_2" />
 
-        <View
+        <ImageView
             android:id="@+id/mid_3"
-            android:layout_width="60dp"
-            android:layout_height="80dp"
+            android:layout_width="48dp"
+            android:layout_height="66dp"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:background="@drawable/r6"
@@ -85,103 +84,103 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/front_2" />
 
-        <View
+        <ImageView
             android:id="@+id/mid_2"
-            android:layout_width="60dp"
-            android:layout_height="80dp"
+            android:layout_width="48dp"
+            android:layout_height="66dp"
             android:layout_marginEnd="8dp"
             android:background="@drawable/r5"
             app:layout_constraintBottom_toBottomOf="@+id/mid_3"
             app:layout_constraintEnd_toStartOf="@+id/mid_3"
             app:layout_constraintTop_toTopOf="@+id/mid_3" />
 
-        <View
+        <ImageView
             android:id="@+id/back_5"
-            android:layout_width="60dp"
-            android:layout_height="80dp"
+            android:layout_width="48dp"
+            android:layout_height="66dp"
             android:layout_marginStart="8dp"
-            android:background="@drawable/c13"
+            android:background="@drawable/ck"
             app:layout_constraintBottom_toBottomOf="@+id/back_3"
             app:layout_constraintStart_toEndOf="@+id/back_4"
             app:layout_constraintTop_toTopOf="@+id/back_3" />
 
-        <View
+        <ImageView
             android:id="@+id/back_4"
-            android:layout_width="60dp"
-            android:layout_height="80dp"
+            android:layout_width="48dp"
+            android:layout_height="66dp"
             android:layout_marginStart="8dp"
-            android:background="@drawable/c12"
+            android:background="@drawable/cq"
             app:layout_constraintBottom_toBottomOf="@+id/back_3"
             app:layout_constraintStart_toEndOf="@+id/back_3"
             app:layout_constraintTop_toTopOf="@+id/back_3" />
 
-        <View
+        <ImageView
             android:id="@+id/back_1"
-            android:layout_width="60dp"
-            android:layout_height="80dp"
+            android:layout_width="48dp"
+            android:layout_height="66dp"
             android:layout_marginEnd="8dp"
             android:background="@drawable/c9"
             app:layout_constraintBottom_toBottomOf="@+id/back_2"
             app:layout_constraintEnd_toStartOf="@+id/back_2"
             app:layout_constraintTop_toTopOf="@+id/back_2" />
 
-        <View
+        <ImageView
             android:id="@+id/back_2"
-            android:layout_width="60dp"
-            android:layout_height="80dp"
+            android:layout_width="48dp"
+            android:layout_height="66dp"
             android:layout_marginEnd="8dp"
             android:background="@drawable/c10"
             app:layout_constraintBottom_toBottomOf="@+id/back_3"
             app:layout_constraintEnd_toStartOf="@+id/back_3"
             app:layout_constraintTop_toTopOf="@+id/back_3" />
 
-        <View
+        <ImageView
             android:id="@+id/back_3"
-            android:layout_width="60dp"
-            android:layout_height="80dp"
+            android:layout_width="48dp"
+            android:layout_height="66dp"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:background="@drawable/c11"
+            android:background="@drawable/cj"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/mid_3" />
 
-        <View
+        <ImageView
             android:id="@+id/mid_5"
-            android:layout_width="60dp"
-            android:layout_height="80dp"
+            android:layout_width="48dp"
+            android:layout_height="66dp"
             android:layout_marginStart="8dp"
             android:background="@drawable/r8"
             app:layout_constraintBottom_toBottomOf="@+id/mid_4"
             app:layout_constraintStart_toEndOf="@+id/mid_4"
             app:layout_constraintTop_toTopOf="@+id/mid_4" />
 
-        <View
+        <ImageView
             android:id="@+id/mid_1"
-            android:layout_width="60dp"
-            android:layout_height="80dp"
+            android:layout_width="48dp"
+            android:layout_height="66dp"
             android:layout_marginEnd="8dp"
             android:background="@drawable/r4"
             app:layout_constraintBottom_toBottomOf="@+id/mid_2"
             app:layout_constraintEnd_toStartOf="@+id/mid_2"
             app:layout_constraintTop_toTopOf="@+id/mid_2" />
 
-        <View
+        <ImageView
             android:id="@+id/mid_4"
-            android:layout_width="60dp"
-            android:layout_height="80dp"
+            android:layout_width="48dp"
+            android:layout_height="66dp"
             android:layout_marginStart="8dp"
             android:background="@drawable/r7"
             app:layout_constraintBottom_toBottomOf="@+id/mid_3"
             app:layout_constraintStart_toEndOf="@+id/mid_3"
             app:layout_constraintTop_toTopOf="@+id/mid_3" />
 
-        <View
+        <ImageView
             android:id="@+id/front_3"
-            android:layout_width="60dp"
-            android:layout_height="80dp"
+            android:layout_width="48dp"
+            android:layout_height="66dp"
             android:layout_marginStart="8dp"
-            android:background="@drawable/f1"
+            android:background="@drawable/fa"
             app:layout_constraintBottom_toBottomOf="@+id/front_2"
             app:layout_constraintStart_toEndOf="@+id/front_2"
             app:layout_constraintTop_toTopOf="@+id/front_2" />
@@ -190,35 +189,67 @@
             android:id="@+id/textView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginEnd="64dp"
             android:layout_marginBottom="8dp"
             android:text="03170****"
             android:textColor="#000000"
             app:layout_constraintBottom_toBottomOf="@+id/head_play2"
-            app:layout_constraintStart_toEndOf="@+id/head_play2" />
+            app:layout_constraintEnd_toStartOf="@+id/submit_play" />
 
         <Button
             android:id="@+id/next_game_play"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginStart="16dp"
             android:background="@drawable/ic_button"
             android:text="下一局"
+            app:layout_constraintStart_toEndOf="@+id/submit_play"
+            app:layout_constraintTop_toTopOf="@+id/submit_play" />
+
+        <Button
+            android:id="@+id/submit_play"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:background="@drawable/ic_button"
+            android:text="出牌"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/back_5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/back_3" />
 
         <Button
             android:id="@+id/return_play"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
-            android:layout_marginEnd="64dp"
+            android:layout_marginStart="60dp"
             android:background="@drawable/ic_button"
             android:text="返回"
             app:layout_constraintBottom_toBottomOf="@+id/next_game_play"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/next_game_play"
             app:layout_constraintTop_toTopOf="@+id/next_game_play" />
+
+        <CheckBox
+            android:id="@+id/auto_play"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/checkbox_style"
+            android:button="@null"
+            android:text=""
+            app:layout_constraintBottom_toTopOf="@+id/textView5"
+            app:layout_constraintStart_toEndOf="@+id/head_play2" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="托管 "
+            android:textColor="#000000"
+            app:layout_constraintBottom_toBottomOf="@+id/auto_play"
+            app:layout_constraintStart_toEndOf="@+id/auto_play"
+            app:layout_constraintTop_toTopOf="@+id/auto_play" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
