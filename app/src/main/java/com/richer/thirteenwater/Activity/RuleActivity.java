@@ -1,10 +1,12 @@
-package com.richer.thirteenwater;
+package com.richer.thirteenwater.Activity;
 
 import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import com.richer.thirteenwater.R;
 
 public class RuleActivity extends AppCompatActivity {
 
