@@ -1,6 +1,6 @@
 import java.util.HashMap;
 import java.util.Map;
-public class result {
+public class Result {
     public static String card1="&2 *3 $4",card2="&2 *3 $4 #5 *7",card3="&2 *3 $4 #5 *7";
     public static String[] s1=new String[3],s2=new String[5],s3=new String[5];
     public static int snum1,snum2,snum3;
@@ -329,6 +329,9 @@ public class result {
     private static void compare(String c1,String c2,String c3){
         int level1,level2,level3;
         int point=0;
+        //System.out.println(c1);
+        //System.out.println(c2);
+        //System.out.println(c3);
         c1=c1.substring(0,8);
         c2=c2.substring(0,14);
         c3=c3.substring(1,15);
@@ -361,9 +364,15 @@ public class result {
         int a1=0,a2=1,a3=2;
         int b1=0,b2=1,b3=2,b4=3,b5=4;
         while(a1<10){
+            //System.out.println("a1="+a1+" "+"a2="+a2+" "+"a3="+a3);
             String ss=s;
             String c1=ss.substring(a1*3+1,(a1+1)*3+1)+ss.substring(a2*3+1,
                     (a2+1)*3+1)+ss.substring(a3*3+1,(a3+1)*3+1);
+            b1=0;
+            b2=1;
+            b3=2;
+            b4=3;
+            b5=4;
             while(b1<5){
                 String sss=ss.substring(0,a1*3+1)
                         +ss.substring((a1+1)*3+1, a2*3+1)
@@ -427,7 +436,7 @@ public class result {
             else a3++;
         }
     }
-    public static String getResult(String[] str,Map m){
+    public static String[] getResult(String[] str,Map m){
         card1=str[0]+" "+str[1]+" "+str[2];
         card2=str[3]+" "+str[4]+" "+str[5]+" "+str[6]+" "+str[7];
         card3=str[8]+" "+str[9]+" "+str[10]+" "+str[11]+" "+str[12];
@@ -440,27 +449,36 @@ public class result {
         card3="";
         for(int i=0;i<s1.length;i++)
         {
+            if(s1[i].charAt(1)=='1')
+                s1[i]+="0";
             card1+=s1[i];
             if(i!=s1.length-1)
                 card1+=" ";
         }
         for(int i=0;i<s2.length;i++)
         {
+            if(s2[i].charAt(1)=='1')
+                s2[i]+="0";
             card2+=s2[i];
             if(i!=s2.length-1)
                 card2+=" ";
         }
         for(int i=0;i<s3.length;i++)
         {
+            if(s3[i].charAt(1)=='1')
+                s3[i]+="0";
             card3+=s3[i];
             if(i!=s3.length-1)
                 card3+=" ";
         }
-        String ansstr=card1+" "+card2+" "+card3;
+        String[] ansstr=new String[3];
+        ansstr[0]=card1;
+        ansstr[1]=card2;
+        ansstr[2]=card3;
         //System.out.println(ansstr);
-        System.out.println(card1);
-        System.out.println(card2);
-        System.out.println(card3);
+        //System.out.println(card1);
+        //System.out.println(card2);
+        //System.out.println(card3);
         return ansstr;
     }
 }
