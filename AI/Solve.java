@@ -1,10 +1,7 @@
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-public class Main {
+public class Solve {
     public static Map<Character,Integer>map=new HashMap<>();
     private static void setMap(){
         map.put('2',0);
@@ -61,31 +58,24 @@ public class Main {
         }
         return str;
     }
-    public static void main(String[] args)throws IOException {
-        String str=null;
+    public static String[] solve(String str)throws IOException {
         setMap();
-        str=getapi.getCard();
-        String[] card=str.split(",");
-        String outputPath="D:\\IDEA2019\\IdeaProject\\13water\\src\\output.txt";
-        File file=new File(outputPath);
-        BufferedWriter bufferedWriter=new BufferedWriter(new FileWriter(file));
-        for(String ch:card)
-        {
-
-            if(ch.length()<10)continue;
-            String[] s=ch.split(" ");
-            String[] st=sort(s);
-            bufferedWriter.write(ch+"\n");
-            if(judge.isSpecial(st,bufferedWriter,map))
-            {
-                bufferedWriter.write("是特殊牌型\n");
-            }
-            else
-            {
-                bufferedWriter.write("不是特殊牌型\n");
-            }
+        if(str.charAt(0)==' '){
+            str=str.substring(1,str.length());
         }
-        bufferedWriter.flush();
-        bufferedWriter.close();
+        if(str.charAt(str.length()-1)==' '){
+            str=str.substring(0,str.length()-1);
+        }
+        String[] card=str.split(" ");
+        card=sort(card);
+        if(Judge.isSpecial(card,map)){
+            String[] ans=new String[3];
+            ans[0]=card[0]+" "+card[1]+" "+card[2];
+            ans[1]=card[3]+" "+card[4]+" "+card[5]+" "+card[6]+" "+card[7];
+            ans[2]=card[8]+" "+card[9]+" "+card[10]+" "+card[11]+" "+card[12];
+            return ans;
+        }
+        String[] ans= Result.getResult(card,map);
+        return ans;
     }
 }

@@ -5,7 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-public class judge {
+public class Judge {
     public static Map<Character,Integer>map=new HashMap<>();
     private static boolean iszzql(String str[]) {
         char z=str[0].charAt(0);
@@ -480,18 +480,17 @@ public class judge {
         }
         return true;
     }
-    public static boolean isSpecial(String[] str,BufferedWriter bufferedWriter
-            ,Map m) throws IOException {
+    public static boolean isSpecial(String[] str,Map m) throws IOException {
         //String outputPath="D:\\IDEA2019\\IdeaProject\\13water\\src\\output" +
         //    ".txt";
         //File file1=new File(outputPath);
         //BufferedWriter bw=new BufferedWriter(new FileWriter(file1));
         map=m;
-        for(String ch:str) {
-                bufferedWriter.write(ch);
-                bufferedWriter.write(" ");
-        }
-        bufferedWriter.write("\n");
+        //for(String ch:str) {
+        //        bufferedWriter.write(ch);
+        //        bufferedWriter.write(" ");
+        //}
+        //bufferedWriter.write("\n");
         if(iszzql(str))
             return true;
         if(isytl(str))
