@@ -17,10 +17,11 @@ public class Network {
                 .build();
         Retrofit retrofit = new Retrofit.Builder()
                 .addConverterFactory(MoshiConverterFactory.create())
-                .baseUrl("http://www.revth.com:12300/")
+                .baseUrl("http://api.revth.com/")
                 .client(client)
                 .build();
 
         api = retrofit.create(Api.class);
     }
+
 }

@@ -33,7 +33,7 @@ public class HttpRequest {
         Network.api.login(new UserDto(name,pwd)).enqueue(callback);
     }
 
-    public static void submit(List<String> cards,int id,String token,Callback<SubmitResponse> callback) {
+    public static void submit(String[] cards,int id,String token,Callback<SubmitResponse> callback) {
 
         Network.api.submit(token,new SubmitRequest(id,cards)).enqueue(callback);
     }
@@ -41,6 +41,13 @@ public class HttpRequest {
     public static void getRank(Callback<List<RankResponse>> callback){
 
         Network.api.getRank().enqueue(callback);
+
+    }
+    public static void getHistory(String token,Callback<List<HistoryResponse>> callback){
+        Network.api.getHistory(token).enqueue(callback);
+    }
+
+    public static void getDetails(String token,Callback<List<HistoryResponse>> callback){
 
     }
 

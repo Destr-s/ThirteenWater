@@ -8,6 +8,7 @@ import retrofit2.Response;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -32,36 +33,16 @@ public class StartActivity extends AppCompatActivity {
         Intent getToken = getIntent();
         token = getToken.getStringExtra("token");
 
+
         startButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
 
-                HttpRequest.open(token, new Callback<OpenResponse>() {
-                    @Override
-                    public void onResponse(Call<OpenResponse> call, Response<OpenResponse> response) {
-
-                        if(response.body()!=null){
-                            card = response.body().data.card;
-                            id = response.body().data.id;
-                        }
-
-                        if(card!=null){
-                            Intent intent = new Intent(StartActivity.this,PlayActivity.class);
-                            intent.putExtra("token",token);
-                            intent.putExtra("card",card);
-                            intent.putExtra("id",id);
-                            startActivity(intent);
-                        }else{
-                            Toast.makeText(StartActivity.this,"服务器异常！",Toast.LENGTH_LONG).show();
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<OpenResponse> call, Throwable t) {
-
-                    }
-                });
+                Intent intent = new Intent(StartActivity.this,PlayActivity.class);
+                intent.putExtra("token",token);
+                intent.putExtra("id",id);
+                startActivity(intent);
 
             }
         });

@@ -3,6 +3,7 @@ package com.richer.thirteenwater.NetWork;
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.CallAdapter;
 import retrofit2.Callback;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -25,5 +26,8 @@ public interface Api {
 
     @GET("rank")
     Call<List<RankResponse>> getRank();
+
+    @GET("history")
+    Call<List<HistoryResponse>> getHistory(@Header("X-Auth-Token") String token);
 
 }

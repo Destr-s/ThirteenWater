@@ -12,16 +12,21 @@ import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.richer.thirteenwater.AI.Solve;
 import com.richer.thirteenwater.NetWork.HttpRequest;
 import com.richer.thirteenwater.NetWork.OpenResponse;
 import com.richer.thirteenwater.NetWork.SubmitResponse;
 import com.richer.thirteenwater.R;
 
+import java.io.IOException;
 import java.lang.annotation.Target;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class PlayActivity extends AppCompatActivity {
@@ -29,14 +34,17 @@ public class PlayActivity extends AppCompatActivity {
     String card = null;
     String token = null;
     int id;
+    List<ImageView> imageViewList  = new ArrayList<>();
+    CheckBox auto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play);
 
+        auto = findViewById(R.id.auto_play);
+
         Intent intent = getIntent();
-        card = intent.getStringExtra("card");
         token = intent.getStringExtra("token");
         id = intent.getIntExtra("id",0);
 
@@ -54,7 +62,6 @@ public class PlayActivity extends AppCompatActivity {
         ImageView back_4 = findViewById(R.id.back_4);
         ImageView back_5 = findViewById(R.id.back_5);
 
-        List<ImageView> imageViewList = new ArrayList<>();
         imageViewList.add(front_1);
         imageViewList.add(front_2);
         imageViewList.add(front_3);
@@ -69,54 +76,14 @@ public class PlayActivity extends AppCompatActivity {
         imageViewList.add(back_4);
         imageViewList.add(back_5);
 
-
-
         Button returnButton = findViewById(R.id.return_play);
         Button submitButton = findViewById(R.id.submit_play);
         Button nextButton = findViewById(R.id.next_game_play);
 
-        String[] splitted = card.split(" ");
+        open();
 
-        List<String> cards = new ArrayList<>();
-        cards.add(splitted[0]+" "+splitted[1]+" "+splitted[2]);
-        cards.add(splitted[3]+" "+splitted[4]+" "+splitted[5]+" "+splitted[6]+" "+splitted[7]);
-        cards.add(splitted[8]+" "+splitted[9]+" "+splitted[10]+" "+splitted[11]+" "+splitted[12]);
+        nextButton.setOnClickListener(v -> open());
 
-        initPoker(card,imageViewList);
-
-        submitButton.setOnClickListener(v -> HttpRequest.submit(cards,id,token,new Callback<SubmitResponse>() {
-
-            @Override
-            public void onResponse(Call<SubmitResponse> call, Response<SubmitResponse> response) {
-
-                if(response.body()!=null){
-                    System.out.println("submit: "+response.body().data.msg);
-                }else{
-                    System.out.println("error");
-                }
-            }
-
-            @Override
-            public void onFailure(Call<SubmitResponse> call, Throwable t) {
-
-            }
-        }));
-
-        nextButton.setOnClickListener(v -> HttpRequest.open(token, new Callback<OpenResponse>() {
-            @Override
-            public void onResponse(Call<OpenResponse> call, Response<OpenResponse> response) {
-                if(response.body()!=null){
-                    OpenResponse.Data data = response.body().data;
-                    card = data.card;
-                    System.out.println("card: "+card);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<OpenResponse> call, Throwable t) {
-
-            }
-        }));
 
         returnButton.setOnClickListener(v -> {
             Intent returnIntent = new Intent(PlayActivity.this,StartActivity.class);
@@ -125,14 +92,19 @@ public class PlayActivity extends AppCompatActivity {
 
     }
 
-    public void initPoker(String card,List<ImageView> imageViews) {
+    public void initPoker(String[] card,List<ImageView> imageViews) {
 
-        String[] cards = card.split(" ");
+        List<String> cards = new ArrayList<>();
 
-        for (int i = 0; i < cards.length; i++) {
+        for(int i=0;i<card.length;i++){
+            String[] s = card[i].split(" ");
+            cards.addAll(Arrays.asList(s));
+        }
+
+        for (int i = 0; i < cards.size(); i++) {
 
             StringBuilder sb = new StringBuilder();
-            String s = cards[i];
+            String s = cards.get(i);
 
             switch (s.charAt(0)) {
                 case '#':
@@ -175,5 +147,69 @@ public class PlayActivity extends AppCompatActivity {
             Drawable drawable = resources.getDrawable(resourceId, null);
             Glide.with(this).load(drawable).into(imageViews.get(i));
         }
+    }
+
+    public void open(){
+        HttpRequest.open(token, new Callback<OpenResponse>() {
+            @Override
+            public void onResponse(Call<OpenResponse> call, Response<OpenResponse> response) {
+
+                if(response.body()!=null){
+                    card = response.body().data.card;
+                    id = response.body().data.id;
+                    String[] cards = new String[0];
+                    try {
+                        cards = Solve.solve(card);
+                        final String[] finalCards = cards;
+                        System.out.println("token:"+token);
+                        System.out.println("id:"+id);
+                        for(int i=0;i<cards.length;i++){
+                            System.out.println("*"+cards[i]);
+                        }
+                        initPoker(finalCards,imageViewList);
+
+                        submit(finalCards);
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<OpenResponse> call, Throwable t) {
+
+            }
+        });
+
+    }
+
+    public void submit(String[] finalCards){
+
+        HttpRequest.submit(finalCards,id,token,new Callback<SubmitResponse>() {
+
+            @Override
+            public void onResponse(Call<SubmitResponse> call, Response<SubmitResponse> response) {
+
+                if(response.body()!=null){
+                    System.out.println("submit: "+response.body().data.msg);
+                    if(auto.isChecked()){
+
+                        open();
+                    }
+
+                }else{
+                    System.out.println("error");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<SubmitResponse> call, Throwable t) {
+
+            }
+        });
+
     }
 }
