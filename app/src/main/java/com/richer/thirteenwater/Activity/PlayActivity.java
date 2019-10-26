@@ -46,7 +46,6 @@ public class PlayActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         token = intent.getStringExtra("token");
-        id = intent.getIntExtra("id",0);
 
         ImageView front_1 = findViewById(R.id.front_1);
         ImageView front_2 = findViewById(R.id.front_2);
@@ -86,8 +85,7 @@ public class PlayActivity extends AppCompatActivity {
 
 
         returnButton.setOnClickListener(v -> {
-            Intent returnIntent = new Intent(PlayActivity.this,StartActivity.class);
-            startActivity(returnIntent);
+            finish();
         });
 
     }
@@ -195,13 +193,13 @@ public class PlayActivity extends AppCompatActivity {
 
                 if(response.body()!=null){
                     System.out.println("submit: "+response.body().data.msg);
-                    if(auto.isChecked()){
 
-                        open();
-                    }
 
                 }else{
                     System.out.println("error");
+                }
+                if(auto.isChecked()){
+                    open();
                 }
             }
 

@@ -24,6 +24,7 @@ public class LoginActivity extends AppCompatActivity {
     String name=null;
     String pwd=null;
     String token=null;
+    int user_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +33,8 @@ public class LoginActivity extends AppCompatActivity {
 
         EditText et_name = findViewById(R.id.name_login);
         EditText et_password = findViewById(R.id.password_login);
+        et_name.setText("Richer230");
+        et_password.setText("123");
 
         et_password.setTransformationMethod(PasswordTransformationMethod.getInstance());
 
@@ -47,11 +50,13 @@ public class LoginActivity extends AppCompatActivity {
                 public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                     if(response.body()!=null) {
                         token = (response.body().data.token);
+                        user_id = response.body().data.user_id;
                         System.out.println("*token: " + token);
                     }
                     if(token!=null){
                         Intent intent = new Intent(LoginActivity.this,StartActivity.class);
                         intent.putExtra("token",token);
+                        intent.putExtra("user_id",user_id);
                         startActivity(intent);
                     }else{
                         Toast.makeText(LoginActivity.this,"密码错误！",Toast.LENGTH_LONG).show();
@@ -66,12 +71,9 @@ public class LoginActivity extends AppCompatActivity {
 
             System.out.println("token: "+token);
 
-
-
         });
         cancelButton.setOnClickListener(v -> {
-            Intent intent = new Intent(LoginActivity.this,MainActivity.class);
-            startActivity(intent);
+            finish();
         });
 
     }

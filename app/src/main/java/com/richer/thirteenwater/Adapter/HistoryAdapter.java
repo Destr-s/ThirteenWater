@@ -21,7 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHolder> {
 
     private List<HistoryResponse> historyResponseList = new ArrayList<>();
-    String token;
+    private String token;
 
     public HistoryAdapter(List<HistoryResponse> responseList,String token){
         this.historyResponseList = responseList;
@@ -41,11 +41,11 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         HistoryResponse history = historyResponseList.get(position);
-        holder.id.setText(history.data.id);
-        holder.score.setText(history.score);
+        holder.id.setText(String.valueOf(history.id));
+        holder.score.setText(String.valueOf(history.score));
         holder.cardView.setOnClickListener(v -> {
             Intent intent = new Intent(v.getContext(),DetailsActivity.class);
-            intent.putExtra("id",history.data.id);
+            intent.putExtra("id",history.id);
             intent.putExtra("token",token);
             v.getContext().startActivity(intent);
         });

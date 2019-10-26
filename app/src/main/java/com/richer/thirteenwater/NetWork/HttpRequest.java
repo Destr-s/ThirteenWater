@@ -18,7 +18,6 @@ public class HttpRequest {
     static String msg = null;
     static String token;
     static String card;
-    static int gameId;
 
     public static void register(String name,String pwd,Callback<RegisterResponse> callback) {
         Network.api.register(new UserDto(name,pwd)).enqueue(callback);
@@ -43,12 +42,15 @@ public class HttpRequest {
         Network.api.getRank().enqueue(callback);
 
     }
-    public static void getHistory(String token,Callback<List<HistoryResponse>> callback){
-        Network.api.getHistory(token).enqueue(callback);
+
+    public static void getHistory(String token,int player_id,int limit,int page,Callback<HistoryData> callback){
+
+        Network.api.getHistory(token,player_id,limit,page).enqueue(callback);
+
     }
 
-    public static void getDetails(String token,Callback<List<HistoryResponse>> callback){
-
+    public static void getDetails(String token,int id,Callback<DetailData> callback){
+        Network.api.getDetails(token,id).enqueue(callback);
     }
 
 }

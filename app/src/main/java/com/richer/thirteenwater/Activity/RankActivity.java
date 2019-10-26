@@ -56,8 +56,7 @@ public class RankActivity extends AppCompatActivity {
 
         Button returnButton = findViewById(R.id.return_rank);
         returnButton.setOnClickListener(v -> {
-            Intent intent = new Intent(RankActivity.this,StartActivity.class);
-            startActivity(intent);
+            finish();
         });
 
     }

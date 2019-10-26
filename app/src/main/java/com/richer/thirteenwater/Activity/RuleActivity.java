@@ -19,8 +19,7 @@ public class RuleActivity extends AppCompatActivity {
         returnButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(RuleActivity.this,StartActivity.class);
-                startActivity(intent);
+                finish();
             }
         });
 

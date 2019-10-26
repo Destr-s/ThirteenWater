@@ -32,40 +32,21 @@ public class StartActivity extends AppCompatActivity {
 
         Intent getToken = getIntent();
         token = getToken.getStringExtra("token");
+        id = getToken.getIntExtra("user_id",0);
+        System.out.println("start_token:"+token);
 
 
-        startButton.setOnClickListener(new View.OnClickListener() {
+        startButton.setOnClickListener(v -> {
 
-            @Override
-            public void onClick(View v) {
+            Intent intent = new Intent(StartActivity.this,PlayActivity.class);
+            intent.putExtra("token",token);
+            startActivity(intent);
 
-                Intent intent = new Intent(StartActivity.this,PlayActivity.class);
-                intent.putExtra("token",token);
-                intent.putExtra("id",id);
-                startActivity(intent);
-
-            }
         });
         joinButton.setOnClickListener(v -> {
-            HttpRequest.open(token, new Callback<OpenResponse>() {
-                @Override
-                public void onResponse(Call<OpenResponse> call, Response<OpenResponse> response) {
-
-                }
-
-                @Override
-                public void onFailure(Call<OpenResponse> call, Throwable t) {
-
-                }
-            });
-
-            if(card!=null){
-                Intent intent = new Intent(StartActivity.this,PlayActivity.class);
-                intent.putExtra("card",card);
-                startActivity(intent);
-            }else{
-                Toast.makeText(StartActivity.this,"服务器异常！",Toast.LENGTH_LONG).show();
-            }
+            Intent intent = new Intent(StartActivity.this,PlayActivity.class);
+            intent.putExtra("token",token);
+            startActivity(intent);
         });
 
         ImageView rankButton = findViewById(R.id.rank_img_start);
@@ -77,6 +58,8 @@ public class StartActivity extends AppCompatActivity {
         ImageView historyButton = findViewById(R.id.history_img_start);
         historyButton.setOnClickListener(v -> {
             Intent intent = new Intent(StartActivity.this,HistoryActivity.class);
+            intent.putExtra("token",token);
+            intent.putExtra("player_id",id);
             startActivity(intent);
         });
 

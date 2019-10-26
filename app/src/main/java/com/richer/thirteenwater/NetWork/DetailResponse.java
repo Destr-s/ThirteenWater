@@ -4,15 +4,9 @@ import java.util.List;
 
 public class DetailResponse {
 
-    public int playerId;
+    public int player_id;
     public String name;
     public int score;
-    public List<String> card;
+    public String[] card;
 
-    public DetailResponse(int playerId, String name, int score, List<String> card) {
-        this.playerId = playerId;
-        this.name = name;
-        this.score = score;
-        this.card = card;
-    }
 }

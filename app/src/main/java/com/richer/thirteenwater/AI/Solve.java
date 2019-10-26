@@ -69,16 +69,20 @@ public class Solve {
             str=str.substring(0,str.length()-1);
         }
         String[] card=str.split(" ");
+        for(int i=0;i<=12;i++){
+            card[i]=card[i].substring(0,2);
+        }
         card=sort(card);
-        if(Judge.isSpecial(card,map)){
+        /*if(Judge.isSpecial(card,map)){
             System.out.println("111");
             String[] ans=new String[3];
             ans[0]=card[0]+" "+card[1]+" "+card[2];
             ans[1]=card[3]+" "+card[4]+" "+card[5]+" "+card[6]+" "+card[7];
             ans[2]=card[8]+" "+card[9]+" "+card[10]+" "+card[11]+" "+card[12];
             return ans;
-        }
+        }*/
         String[] ans= Result.getResult(card,map);
+
         return ans;
     }
 }

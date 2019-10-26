@@ -10,7 +10,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory;
 public class Network {
     public static Api api;
     public static void init() {
-        HttpLoggingInterceptor logging = new HttpLoggingInterceptor(System.out::println);
+        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
         logging.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = new OkHttpClient.Builder()
                 .addInterceptor(logging)
