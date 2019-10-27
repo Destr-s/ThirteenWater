@@ -66,7 +66,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 Intent intent = new Intent(RegisterActivity.this,LoginActivity.class);
                                 startActivity(intent);
                             }else{
-                                Toast.makeText(RegisterActivity.this,"用户名已存在！",Toast.LENGTH_LONG).show();
+                                //Toast.makeText(RegisterActivity.this,"用户名已存在！",Toast.LENGTH_LONG).show();
                             }
 
                         }

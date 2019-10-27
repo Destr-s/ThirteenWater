@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.richer.thirteenwater.Adapter.HistoryAdapter;
@@ -31,41 +32,44 @@ import java.util.List;
 
 public class HistoryActivity extends AppCompatActivity {
 
+    String token;
+    int player_id;
+    int page;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
 
-        String token;
-        int player_id;
+        page=0;
 
         Intent intent = getIntent();
         token = intent.getStringExtra("token");
         player_id = intent.getIntExtra("player_id",0);
-        System.out.println("history_token:"+token);
+        String name = intent.getStringExtra("name");
 
-        List<HistoryResponse> historyResponseList = new ArrayList<>();
+        TextView tv_name = findViewById(R.id.message_history);
+        tv_name.setText(name);
 
-        HttpRequest.getHistory(token, player_id, 20, 0, new Callback<HistoryData>() {
-            @Override
-            public void onResponse(Call<HistoryData> call, Response<HistoryData> response) {
+        Button bt_next = findViewById(R.id.next_page_history);
+        Button bt_last = findViewById(R.id.last_page_history);
 
-                System.out.println("11111");
-                for(int i=0;i<response.body().data.size();i++){
-                    historyResponseList.add(response.body().data.get(i));
-                }
-                RecyclerView recyclerView = findViewById(R.id.history_recyclerview);
-                LinearLayoutManager manager = new LinearLayoutManager(HistoryActivity.this);
-                recyclerView.setLayoutManager(manager);
-                HistoryAdapter adapter = new HistoryAdapter(historyResponseList,token);
-                recyclerView.setAdapter(adapter);
-            }
+        System.out.println("player_id:"+player_id);
+        getHistory(page);
 
-            @Override
-            public void onFailure(Call<HistoryData> call, Throwable t) {
-                System.out.println("0000000");
+        bt_next.setOnClickListener(v -> {
+            page++;
+            getHistory(page);
+        });
+
+        bt_last.setOnClickListener(v -> {
+            if(page>0){
+                page--;
+                getHistory(page);
             }
         });
+
 
         Button returnButton = findViewById(R.id.return_history);
         returnButton.setOnClickListener(new View.OnClickListener() {
@@ -75,6 +79,34 @@ public class HistoryActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void getHistory(int page){
+
+        List<HistoryResponse> historyResponseList = new ArrayList<>();
+
+        HttpRequest.getHistory(token, player_id, 20, page, new Callback<HistoryData>() {
+            @Override
+            public void onResponse(Call<HistoryData> call, Response<HistoryData> response) {
+
+                if(response.body()!=null){
+                    for(int i=0;i<response.body().data.size();i++){
+                        historyResponseList.add(response.body().data.get(i));
+                        System.out.println(i+""+response.body().data.get(i).score);
+                    }
+                    RecyclerView recyclerView = findViewById(R.id.history_recyclerview);
+                    LinearLayoutManager manager = new LinearLayoutManager(HistoryActivity.this);
+                    recyclerView.setLayoutManager(manager);
+                    HistoryAdapter adapter = new HistoryAdapter(historyResponseList,token);
+                    recyclerView.setAdapter(adapter);
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<HistoryData> call, Throwable t) {
+            }
+        });
     }
 
 }

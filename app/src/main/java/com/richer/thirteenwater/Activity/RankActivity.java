@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.richer.thirteenwater.Adapter.RankAdapter;
 import com.richer.thirteenwater.NetWork.HttpRequest;
@@ -27,6 +28,12 @@ public class RankActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rank);
+
+        Intent intent = getIntent();
+        String name = intent.getStringExtra("name");
+
+        TextView tv_name = findViewById(R.id.message_rank);
+        tv_name.setText(name);
 
         List<RankResponse> rankResponseList = new ArrayList<>();
 

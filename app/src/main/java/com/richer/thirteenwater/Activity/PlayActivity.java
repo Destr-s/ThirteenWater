@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -34,8 +35,10 @@ public class PlayActivity extends AppCompatActivity {
     String card = null;
     String token = null;
     int id;
+    boolean flag = true;
     List<ImageView> imageViewList  = new ArrayList<>();
     CheckBox auto;
+    TextView tv_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +49,12 @@ public class PlayActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         token = intent.getStringExtra("token");
+        String name = intent.getStringExtra("name");
+
+        TextView tv_name = findViewById(R.id.message_play);
+        tv_name.setText(name);
+        TextView tv_name2 = findViewById(R.id.message_play2);
+        tv_name2.setText(name);
 
         ImageView front_1 = findViewById(R.id.front_1);
         ImageView front_2 = findViewById(R.id.front_2);
@@ -76,15 +85,15 @@ public class PlayActivity extends AppCompatActivity {
         imageViewList.add(back_5);
 
         Button returnButton = findViewById(R.id.return_play);
-        Button submitButton = findViewById(R.id.submit_play);
+        tv_id = findViewById(R.id.id_play);
         Button nextButton = findViewById(R.id.next_game_play);
 
         open();
 
         nextButton.setOnClickListener(v -> open());
 
-
         returnButton.setOnClickListener(v -> {
+            flag = false;
             finish();
         });
 
@@ -143,7 +152,9 @@ public class PlayActivity extends AppCompatActivity {
                     name, "drawable",
                     this.getPackageName());
             Drawable drawable = resources.getDrawable(resourceId, null);
-            Glide.with(this).load(drawable).into(imageViews.get(i));
+            if(flag){
+                Glide.with(this).load(drawable).into(imageViews.get(i));
+            }
         }
     }
 
@@ -155,15 +166,12 @@ public class PlayActivity extends AppCompatActivity {
                 if(response.body()!=null){
                     card = response.body().data.card;
                     id = response.body().data.id;
+                    tv_id.setText(String.valueOf(id));
                     String[] cards = new String[0];
                     try {
                         cards = Solve.solve(card);
                         final String[] finalCards = cards;
-                        System.out.println("token:"+token);
-                        System.out.println("id:"+id);
-                        for(int i=0;i<cards.length;i++){
-                            System.out.println("*"+cards[i]);
-                        }
+
                         initPoker(finalCards,imageViewList);
 
                         submit(finalCards);
@@ -171,7 +179,6 @@ public class PlayActivity extends AppCompatActivity {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-
 
                 }
             }
@@ -198,7 +205,7 @@ public class PlayActivity extends AppCompatActivity {
                 }else{
                     System.out.println("error");
                 }
-                if(auto.isChecked()){
+                if(auto.isChecked()&&flag){
                     open();
                 }
             }

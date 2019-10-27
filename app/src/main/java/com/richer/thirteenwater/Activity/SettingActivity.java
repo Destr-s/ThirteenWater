@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.richer.thirteenwater.R;
 
@@ -14,6 +15,12 @@ public class SettingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
+
+        Intent intent = getIntent();
+        String name = intent.getStringExtra("name");
+
+        TextView tv_name = findViewById(R.id.message_setting);
+        tv_name.setText(name);
 
         Button returnButton = findViewById(R.id.return_setting);
         returnButton.setOnClickListener(new View.OnClickListener() {
