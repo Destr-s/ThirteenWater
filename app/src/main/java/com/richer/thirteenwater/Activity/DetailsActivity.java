@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.gson.JsonObject;
@@ -103,7 +104,6 @@ public class DetailsActivity extends AppCompatActivity {
         HttpRequest.getDetails(token, id, new Callback<DetailData>() {
             @Override
             public void onResponse(Call<DetailData> call, Response<DetailData> response) {
-
                 if(response.body()!=null){
                     for(int i=0;i<response.body().data.detail.size();i++){
                         detailResponses.add(response.body().data.detail.get(i));
@@ -129,41 +129,58 @@ public class DetailsActivity extends AppCompatActivity {
             }
         });
 
+        if(detailResponses.size()==0){
+            Toast.makeText(this,"对局未结束...",Toast.LENGTH_SHORT).show();
+            finish();
+        }
+
         bt_player_1.setOnClickListener(v -> {
-            String[] card = detailResponses.get(0).card;
-            initPoker(card,imageViewList);
-            tv_score.setText(String.valueOf(scoreList.get(0)));
-            bt_player_1.setBackgroundColor(Color.GRAY);
-            bt_player_2.setBackground(d);
-            bt_player_3.setBackground(d);
-            bt_player_4.setBackground(d);
+            if(detailResponses.size()!=0){
+
+                String[] card = detailResponses.get(0).card;
+                initPoker(card,imageViewList);
+                tv_score.setText(String.valueOf(scoreList.get(0)));
+                bt_player_1.setBackgroundColor(Color.GRAY);
+                bt_player_2.setBackground(d);
+                bt_player_3.setBackground(d);
+                bt_player_4.setBackground(d);
+            }
         });
         bt_player_2.setOnClickListener(v -> {
-            String[] card = detailResponses.get(1).card;
-            initPoker(card,imageViewList);
-            tv_score.setText(String.valueOf(scoreList.get(1)));
-            bt_player_2.setBackgroundColor(Color.GRAY);
-            bt_player_1.setBackground(d);
-            bt_player_3.setBackground(d);
-            bt_player_4.setBackground(d);
+            if(detailResponses.size()!=0){
+
+                String[] card = detailResponses.get(1).card;
+                initPoker(card,imageViewList);
+                tv_score.setText(String.valueOf(scoreList.get(1)));
+                bt_player_2.setBackgroundColor(Color.GRAY);
+                bt_player_1.setBackground(d);
+                bt_player_3.setBackground(d);
+                bt_player_4.setBackground(d);
+            }
         });
         bt_player_3.setOnClickListener(v -> {
-            String[] card = detailResponses.get(2).card;
-            initPoker(card,imageViewList);
-            tv_score.setText(String.valueOf(scoreList.get(2)));
-            bt_player_3.setBackgroundColor(Color.GRAY);
-            bt_player_2.setBackground(d);
-            bt_player_1.setBackground(d);
-            bt_player_4.setBackground(d);
+            if(detailResponses.size()!=0){
+
+                String[] card = detailResponses.get(2).card;
+                initPoker(card,imageViewList);
+                tv_score.setText(String.valueOf(scoreList.get(2)));
+                bt_player_3.setBackgroundColor(Color.GRAY);
+                bt_player_2.setBackground(d);
+                bt_player_1.setBackground(d);
+                bt_player_4.setBackground(d);
+            }
         });
         bt_player_4.setOnClickListener(v -> {
-            String[] card = detailResponses.get(3).card;
-            initPoker(card,imageViewList);
-            tv_score.setText(String.valueOf(scoreList.get(3)));
-            bt_player_4.setBackgroundColor(Color.GRAY);
-            bt_player_2.setBackground(d);
-            bt_player_1.setBackground(d);
-            bt_player_3.setBackground(d);
+            if(detailResponses.size()!=0){
+
+                String[] card = detailResponses.get(3).card;
+                initPoker(card,imageViewList);
+                tv_score.setText(String.valueOf(scoreList.get(3)));
+                bt_player_4.setBackgroundColor(Color.GRAY);
+                bt_player_2.setBackground(d);
+                bt_player_1.setBackground(d);
+                bt_player_3.setBackground(d);
+            }
         });
 
         Button returnButton = findViewById(R.id.return_details);
