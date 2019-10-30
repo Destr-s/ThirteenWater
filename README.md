@@ -8,7 +8,7 @@
 
  Android手机可点击仓库标题下方release版本下载apk文件安装至手机测试
  
- 也可下载仓库中demo观看运行视频
+ 也可下载仓库中Demo观看演示视频
  
  单独AI测试可使用AI文件夹中Java文件，使用Java IDE打开，编译运行需要Google gson包，可百度下载
  
