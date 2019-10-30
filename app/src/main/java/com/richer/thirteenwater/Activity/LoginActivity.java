@@ -30,8 +30,6 @@ public class LoginActivity extends AppCompatActivity {
 
         EditText et_name = findViewById(R.id.name_login);
         EditText et_password = findViewById(R.id.password_login);
-        et_name.setText("Richer230");
-        et_password.setText("123");
 
         et_password.setTransformationMethod(PasswordTransformationMethod.getInstance());
 
