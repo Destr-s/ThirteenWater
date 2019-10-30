@@ -23,20 +23,12 @@ public class Solve {
         map.put('#',16);
     }
     private static String[] sort(String[] str) {
-        //for(int i=0;i<=12;i++){
-        //    System.out.println(str[i]);
-        //}
         for(int i=0;i<=11;i++)
         {
-            //System.out.println(i);
             for(int j=i+1;j<=12;j++)
             {
-                //System.out.println(str[i].charAt(0)+" "+str[j].charAt(0));
-                //System.out.println(map.get(str[i].charAt(0))+" "+map.get
-                // (str[j].charAt(0)));
                 if(map.get(str[i].charAt(0))<map.get(str[j].charAt(0)))
                 {
-                    //System.out.println(i+" "+j);
                     String ss=str[i];
                     str[i]=str[j];
                     str[j]=ss;
@@ -67,15 +59,12 @@ public class Solve {
             str=str.substring(0,str.length()-1);
         }
         String[] card=str.split(" ");
-        card=sort(card);
-        if(Judge.isSpecial(card,map)){
-            String[] ans=new String[3];
-            ans[0]=card[0]+" "+card[1]+" "+card[2];
-            ans[1]=card[3]+" "+card[4]+" "+card[5]+" "+card[6]+" "+card[7];
-            ans[2]=card[8]+" "+card[9]+" "+card[10]+" "+card[11]+" "+card[12];
-            return ans;
+        for(int i=0;i<=12;i++){
+            card[i]=card[i].substring(0,2);
         }
+        card=sort(card);
         String[] ans= Result.getResult(card,map);
+
         return ans;
     }
 }
