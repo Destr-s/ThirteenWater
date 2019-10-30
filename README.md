@@ -6,8 +6,6 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/c2a4dd48c08b498e9049b172c94f43a3)](https://www.codacy.com/manual/Destr-s/ThirteenWater?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Destr-s/ThirteenWater&amp;utm_campaign=Badge_Grade)
 # 运行环境及使用方法
 
- 电脑上Android studio 
- 
  Android手机可点击仓库标题下方release版本下载apk文件安装至手机测试
  
  也可下载仓库中demo观看运行视频
